@@ -20,10 +20,7 @@ mongoose.connect("mongodb+srv://abubakker13:DiscussionForum1@discussionforumclus
 //Middleware Section
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
-app.use(cors({
-    origin: "http://localhost:3000",
-    credentials: true
-}))
+app.use(cors())
 
 app.use(session({
     secret: "secret_code",
