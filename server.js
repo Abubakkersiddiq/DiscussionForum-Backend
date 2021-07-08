@@ -20,7 +20,10 @@ mongoose.connect("mongodb+srv://abubakker13:DiscussionForum1@discussionforumclus
 //Middleware Section
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
-app.use(cors())
+app.use(cors({
+    origin: ["http://localhost:3000","https://discussion-forum-frontend.herokuapp.com/"],
+    credentials: true
+}))
 
 app.use(session({
     secret: "secret_code",
@@ -74,6 +77,7 @@ app.get("/logout", (req, res)=> {
 
 app.get("/user",(req, res) =>{
     res.send(req.user)
+    console.log(req.user)
 })
 
 app.post("/create", RecordController.createData)
