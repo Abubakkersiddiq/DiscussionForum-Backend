@@ -20,8 +20,20 @@ mongoose.connect("mongodb+srv://abubakker13:DiscussionForum1@discussionforumclus
 //Middleware Section
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
+
+var allowedOrigins = ["http://localhost:3000","https://discussion-forum-frontend.herokuapp.com/"];
 app.use(cors({
-    origin: ["http://localhost:3000","https://discussion-forum-frontend.herokuapp.com/"],
+    origin: function(origin, callback){
+        if(!origin) return callback (null, true);
+
+        if(allowedOrigins.indexOf(origin) === -1){
+            var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+
+        return callback(null, true);
+    },
     credentials: true
 }))
 
