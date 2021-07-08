@@ -20,15 +20,17 @@ module.exports = function (passport) {
     })
   );
 
+  //Serializing the user as cookie information
   passport.serializeUser((user, cb) => {
     cb(null, user.id);
   });
 
+  //Deserializing the user information from the cookies 
   passport.deserializeUser((id, cb) => {
     User.findOne({ _id: id }, (err, user) => {
-        const usernameInfo = {
-            username: user.username
-        }
+      const usernameInfo = {
+        username: user.username,
+      };
       cb(err, usernameInfo);
     });
   });
