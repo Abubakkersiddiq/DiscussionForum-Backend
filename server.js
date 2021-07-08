@@ -21,7 +21,7 @@ mongoose.connect("mongodb+srv://abubakker13:DiscussionForum1@discussionforumclus
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 
-var allowedOrigins = ["http://localhost:3000","https://discussion-forum-frontend.herokuapp.com/"];
+var allowedOrigins = ["http://localhost:3000","https://discussion-forum-frontend.herokuapp.com"];
 app.use(cors({
     origin: function(origin, callback){
         if(!origin) return callback (null, true);
